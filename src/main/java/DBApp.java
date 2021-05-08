@@ -386,11 +386,8 @@ public class DBApp  implements DBAppInterface{
 	}
 
 
-	@Override
-	public void createIndex(String tableName, String[] columnNames) throws DBAppException {
 
-	// TODO Auto-generated method stub
-	}
+
 
 
 	public static String[]returnRange(String pageName){
@@ -1859,6 +1856,15 @@ public static boolean insertexist(String t, Object key)  throws DBAppException {
 
 }
 ///////////////////////////////////////////////////////MILESTONE_2///////////////////////////////////////////////
+public void createIndex(String tableName, String[] columnNames) throws DBAppException {
+
+
+	//int 0 Double 1 String 2 Date 3
+
+
+
+}
+
 
 	public static String [] getmin_max (String tablename, String colName){
 		String s ="";
@@ -1891,7 +1897,37 @@ public static boolean insertexist(String t, Object key)  throws DBAppException {
 		return null;
 	}
 
+	public static String [] check_type (String tablename, String colName){
+		String s ="";
+		String line = "";
+		try
+		{
 
+			BufferedReader br = new BufferedReader(new FileReader("src/main/resources/metadata.csv"));
+			while ((line = br.readLine()) != null)   //returns a Boolean value
+			{
+
+				String[] row = line.split(",");    // use comma as separator
+
+				if(row[0].equals(tablename)&& row[1].equals(colName)){
+
+					String [] min_max = {row[row.length-2],row[row.length-1]};
+					return min_max;
+
+				}
+
+
+			}
+
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+			return null;
+
+		}
+		return null;
+	}
 
 
 
