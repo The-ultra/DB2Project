@@ -104,8 +104,8 @@ public class DBApp  implements DBAppInterface{
 			clus = true;
 	
 	
-		builder.append(name+","+col+","+typ+","+clus.toString()+","+"false,"+min+","+max+"\n");
-		System.out.println(clus.toString());
+		builder.append(name+","+col+","+typ+","+ clus +","+"false,"+min+","+max+"\n");
+		System.out.println(clus);
 		pw.write(builder.toString());
 	
 	}
@@ -179,9 +179,7 @@ public class DBApp  implements DBAppInterface{
 				try{
 					int mi = Integer.parseInt(min);
 					int ma = Integer.parseInt(max);
-					if(obj<=ma && obj>=mi)
-						return true;
-					else return false;
+					return obj <= ma && obj >= mi;
 				}
 				catch (Exception e) {
 					throw new DBAppException();
@@ -200,9 +198,7 @@ public class DBApp  implements DBAppInterface{
 					int comp2= obj1.compareTo(ma1);
 
 
-					if(comp1>=0 && comp2<=0)
-						return true;                                 
-					else return false;
+					return comp1 >= 0 && comp2 <= 0;
 				}
 				catch (Exception e) {
 					throw new DBAppException();
@@ -222,9 +218,7 @@ public class DBApp  implements DBAppInterface{
 					int comp1=obj.compareTo(mi);
 					int comp2=obj.compareTo(ma);
 
-					if(comp1>=0 && comp2<=0)
-						return true;
-					else return false;
+					return comp1 >= 0 && comp2 <= 0;
 				}
 				catch (Exception e) {
 					throw new DBAppException();
@@ -236,9 +230,7 @@ public class DBApp  implements DBAppInterface{
 				int comp1=obj.compareToIgnoreCase(min);
 				int comp2=obj.compareToIgnoreCase(max);
 
-				if(comp1>=0 && comp2<=0)
-					return true;
-				else return false;
+				return comp1 >= 0 && comp2 <= 0;
 			}
 
 
@@ -254,11 +246,8 @@ public class DBApp  implements DBAppInterface{
 
 	}
 	public static boolean checkdeleted(String tableName,int pagenum){
-		if(returnRange(tableName+pagenum)[0]==null){
-		return true;
-		}
-		return false;
-		}
+		return returnRange(tableName + pagenum)[0] == null;
+	}
 
 	public static int searchinsert(String tableName,Object key) throws DBAppException {//returns page number if value is -1 then insert into first page if -2 then last page
 		int tablesize=Table.deserialT(tableName);
@@ -1869,6 +1858,40 @@ public static boolean insertexist(String t, Object key)  throws DBAppException {
     return false;
 
 }
+///////////////////////////////////////////////////////MILESTONE_2///////////////////////////////////////////////
+
+	public static String [] getmin_max (String tablename, String colName){
+		String s ="";
+		String line = "";
+		try
+		{
+
+			BufferedReader br = new BufferedReader(new FileReader("src/main/resources/metadata.csv"));
+			while ((line = br.readLine()) != null)   //returns a Boolean value
+			{
+
+				String[] row = line.split(",");    // use comma as separator
+
+				if(row[0].equals(tablename)&& row[1].equals(colName)){
+				String [] min_max = {row[row.length-2],row[row.length-1]};
+				return min_max;
+
+			}
+
+
+			}
+
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+			return null;
+
+		}
+		return null;
+	}
+
+
 
 
 
