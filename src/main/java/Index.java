@@ -3,6 +3,8 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
+import static java.lang.Math.floor;
+
 public class Index   {
     Hashtable<String, Integer> Ranges ;
     ArrayList Refrences;
@@ -19,46 +21,31 @@ public class Index   {
             throw new Exception("Couldn't find given tablename and colName");
         else
         {
-            if(type== 0){
+            if(type== 0 || type == 1 || type == 2){
                 int min = return_number(min_max[0]);
                 int max = return_number(min_max[1]);
                 int diffrence = max-min;
                 if(diffrence >10) {
-                    if (diffrence % 10 == 0) {
-                        int step = (int) ((diffrence * 0.1) + min);
-                        for (int i = 0; i < 10; i++) {
-                            Ranges.put((i * step) + "-" + ((i + 1) * step), i); //90 not includin
+                                double step =  ((diffrence * 0.1) + min);
+                                for (int i = 0; i < 10; i++) {
+                                        if(i == 0) {
+                                            Ranges.put((i * step) + "-" + ((i + 1) * step), i);
 
-                        }
-                    } else {
-                        if (diffrence % 10 == 0) {
-                            int step = (int) ((diffrence * 0.1) + min);
-                            for (int i = 0; i < 10; i++) {
-                                Ranges.put((i * step) + "-" + ((i + 1) * step), i);
-
+                                        }
                             }
-
-
                         }
+                        else
+                             if(type==3){
 
-                    }
-                }
 
-
-            }else
-                if(type==1){
-
-            }else
-                if(type==2){
-
-                }else
-                    if(type==3){
 
         }
 
 
 
-            }}
+            }
+        }
+    }
 
 
     public static int return_number(String x){

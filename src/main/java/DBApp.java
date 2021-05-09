@@ -57,6 +57,7 @@ public class DBApp  implements DBAppInterface{
 			this.appendCsv(strTableName, strClusteringKeyColumn, htblColNameType, htblColNameMin, htblColNameMax);
 			Table t = new Table(strTableName);
 
+
 			t.cluster = strClusteringKeyColumn;
 
 			t.columns=  new String [htblColNameType.size()];
