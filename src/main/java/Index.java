@@ -1,6 +1,7 @@
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.Hashtable;
 
 import static java.lang.Math.floor;
@@ -21,6 +22,7 @@ public class Index   {
             throw new Exception("Couldn't find given tablename and colName");
         else
         {
+            if(Table.deserialT(tableName)==0){
             if(type== 0 || type == 1 || type == 2){
                 int min = return_number(min_max[0]);
                 int max = return_number(min_max[1]);
@@ -28,14 +30,16 @@ public class Index   {
                 if(diffrence >10) {
                                 double step =  ((diffrence * 0.1) + min);
                                 for (int i = 0; i < 10; i++) {
-                                        if(i == 0) {
+
                                             Ranges.put((i * step) + "-" + ((i + 1) * step), i);
 
-                                        }
-                            }
+
+
+                                }
                         }
                         else
                              if(type==3){
+
 
 
 
@@ -45,7 +49,7 @@ public class Index   {
 
             }
         }
-    }
+    }}
 
 
     public static int return_number(String x){
@@ -66,5 +70,32 @@ public class Index   {
 
     }
 
+    public void fillbuckets(){
+        Enumeration<String> type = Ranges.keys();
+        int i =0;
+
+        while(type.hasMoreElements()){
+            String x = type.nextElement();
+            String[] currrange = x.split("-");
+            int currmin =Integer.parseInt(currrange[0]);
+            int currmax =Integer.parseInt(currrange[1]);
+            //get all the tuples within the currrange into the arraylist
+            for(int z = currmin; i<currmax;i++){
+
+
+            }
+
+
+        }
+
+
+
+
+        }
+
+
 
     }
+
+
+
