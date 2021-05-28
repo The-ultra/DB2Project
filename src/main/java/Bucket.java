@@ -1,54 +1,81 @@
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Vector;
 
-public class Bucket extends Vector<Object> {
-    Vector<Object> buck;
-    public Bucket() {
+public class Bucket extends Vector<ArrayList<Object>> implements Serializable {
+
+  Vector<Bucket> overflow;
+
+
+  public Bucket() {
+    overflow = new Vector<>();
+  }
+
+  public boolean isFull() {
+    boolean res = false;
+    Properties prop = new Properties();
+    String fileName = "src/main/resources/DBApp.config";
+    InputStream is = null;
+    try {
+      is = new FileInputStream(fileName);
+    } catch (FileNotFoundException ignored) {
+
+    }
+    try {
+      prop.load(is);
+      int max = Integer.parseInt(prop.getProperty("MaximumKeysCountinIndexBucket"));
+        if (this.size() == max) {
+            res = true;
+        } else {
+            res = false;
+        }
+    } catch (IOException ex) {
 
     }
 
-        public void addToBucket(Object A){
-        if(this.checkFull()){
-            buck.add(A);
+    return res;
+  }
 
-        }
-        }
+  public void serialB(String s) {
+    try {
+      String filename = "src/main/resources/data/" + s + ".ser";
 
+      FileOutputStream file = new FileOutputStream(filename);
+      ObjectOutputStream out = new ObjectOutputStream(file);
 
-       public boolean checkFull(){
-                           //full = false --- can accept entries=true
-               boolean res=false;
-               Properties prop = new Properties();
-               String fileName = "src/main/resources/DBApp.config";
-               InputStream is = null;
-               try {
-                   is = new FileInputStream(fileName);
-               } catch (FileNotFoundException ex) {
+      out.writeObject(this);
 
-               }
-               try {
-                   prop.load(is);
-                   int max = Integer.parseInt(prop.getProperty("MaximumKeysCountinIndexBucket"));
-                   if (this.size()==max){
-                       res= true;
-                   }
-                   else
-                       res= false;
-               }
-               catch (IOException ex) {
+      out.close();
+      file.close();
 
+      System.out.println("Object has been serialized");
 
-               }
+    } catch (IOException ex) {
+      System.out.println("IOException is caught");
+    }
 
-               return res;
-           }
+  }
 
+  public static Bucket deserialB(String s) {
+    Bucket p;
+    try {
+      FileInputStream fileIn = new FileInputStream("src/main/resources/data/" + s + ".ser");
+      ObjectInputStream in = new ObjectInputStream(fileIn);
+      p = (Bucket) in.readObject();
+      in.close();
+      fileIn.close();
+      return p;
+    } catch (IOException i) {
+      i.printStackTrace();
+      return null;
+    } catch (ClassNotFoundException c) {
+      System.out.println(" class not found");
+      c.printStackTrace();
+      return null;
+    }
 
-
-
+  }
 
 }
+
