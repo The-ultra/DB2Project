@@ -397,19 +397,6 @@ public class DBApp  implements DBAppInterface{
 	}
 
 
-	@Override
-	public void createIndex(String tableName, String[] columnNames) throws DBAppException {
-
-		Hashtable h = new Hashtable();
-		for (int i = 0; i <columnNames.length ; i++) {
-			h.put(columnNames[i],"");
-		}
-		if(!tableExists(tableName) || !checkColumns(tableName,h)){
-			throw new DBAppException();
-		}
-		new Grid(tableName,columnNames);
-
-	}
 
 
 	public static String[]returnRange(String pageName){
@@ -1878,8 +1865,98 @@ public static boolean insertexist(String t, Object key)  throws DBAppException {
 
 }
 
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+
+
+
+
+	public static Object getMin(String table, String col) throws IOException {
+	int type= getType(table,col);  //int 0 Double 1 String 2 Date 3
+
+
+
+
+	String line = "";
+	String splitBy = ",";
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("src/main/resources/metadata.csv"));
+			while ((line = br.readLine()) != null)   //returns a Boolean value
+			{
+				String[] row = line.split(splitBy);    // use comma as separator
+				String line0 = row[0];
+				String line1 = row[1];
+
+				if (line0.equalsIgnoreCase(table) && line1.equalsIgnoreCase(col)) {
+
+					return row[5];
+
+
+				}
+
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+
+}
+		return null;
+}
+
+
+
+
+
+
+
+
+
+
+
+	public static Object getMax(String table, String col) throws IOException {
+		int type= getType(table,col);  //int 0 Double 1 String 2 Date 3
+
+
+		String line = "";
+		String splitBy = ",";
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("src/main/resources/metadata.csv"));
+			while ((line = br.readLine()) != null)   //returns a Boolean value
+			{
+				String[] row = line.split(splitBy);    // use comma as separator
+				String line0 = row[0];
+				String line1 = row[1];
+
+				if (line0.equalsIgnoreCase(table) && line1.equalsIgnoreCase(col)) {
+
+					return row[6];
+
+
+				}
+
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+
+		}
+		return null;
+	}
+	@Override
+	public void createIndex(String tableName, String[] columnNames) throws DBAppException {
+
+		Hashtable h = new Hashtable();
+		for (int i = 0; i <columnNames.length ; i++) {
+			h.put(columnNames[i],"");
+		}
+		if(!tableExists(tableName) || !checkColumns(tableName,h)){
+			throw new DBAppException();
+		}
+
+
+		for(int i = 0 ; i<columnNames.length;i++) {
+			new Index(tableName, columnNames[i]);
+		}
+	}
 
 
 

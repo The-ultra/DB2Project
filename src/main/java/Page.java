@@ -22,9 +22,13 @@ public class Page extends Vector<ArrayList<Object>> implements Serializable {
 	public void addOverflow(Page p){
 		overflow.add(p);
 	}
+
+
 	public void removeOverflow(int i){
 		overflow.remove(i);
 	}
+
+
 	public boolean isFull(){        //full = false --- can accept entries=true
 		boolean res=false;
 		Properties prop = new Properties();
