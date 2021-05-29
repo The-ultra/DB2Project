@@ -6,10 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="27bc295d-16e4-47b9-ba76-206400f989d9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DBApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DBApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/courses.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/courses.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/pcs.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/pcs.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/range.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/range.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/students.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/students.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/students0.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/students0.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/transcripts.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/transcripts.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/metadata.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/metadata.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Milestone1Tests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Milestone1Tests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,9 +52,10 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Application.DBApp">
+  <component name="RunManager" selected="JUnit.Milestone1Tests">
     <configuration name="DBApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="DBApp" />
       <module name="DB2Project" />
@@ -97,8 +101,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DBApp" />
         <item itemvalue="JUnit.Milestone1Tests" />
+        <item itemvalue="Application.DBApp" />
         <item itemvalue="JUnit.Milestone1Tests.testExtraTranscriptsInsertion" />
         <item itemvalue="JUnit.Milestone1Tests.testSetPageSize" />
         <item itemvalue="Application.Table" />
