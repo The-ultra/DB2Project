@@ -17,10 +17,8 @@ public class Bucket extends Vector<Object> {
   }
 
   public void addToBucket(Object A){
-    if(this.checkFull()){
       buck.add(A);
 
-    }
   }
 
 

@@ -2384,7 +2384,7 @@ public class DBApp implements DBAppInterface {
     return null;
   }
 
-  public void createIndex(String tableName, String[] columnNames) throws DBAppException {
+  public void createIndex(String tableName, String[] columnNames) throws DBAppException, IOException {
 
     Hashtable h = new Hashtable();
     for (int i = 0; i <columnNames.length ; i++) {

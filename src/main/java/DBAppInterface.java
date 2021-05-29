@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Iterator;
 
@@ -9,7 +10,7 @@ public interface DBAppInterface {
       Hashtable<String, String> colNameMin, Hashtable<String, String> colNameMax)
       throws DBAppException;
 
-  void createIndex(String tableName, String[] columnNames) throws DBAppException;
+  void createIndex(String tableName, String[] columnNames) throws DBAppException, IOException;
 
   void insertIntoTable(String tableName, Hashtable<String, Object> colNameValue)
       throws DBAppException;
