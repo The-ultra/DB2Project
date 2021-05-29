@@ -1602,11 +1602,7 @@ if(maxpos>=0){
 
 
 
-	@Override
-	public Iterator selectFromTable(SQLTerm[] sqlTerms, String[] arrayOperators) throws DBAppException {
 
-		return null;
-	}
 
 	public static int binarysearchint(Page v1, int key){
 		int low = 0;
@@ -1869,6 +1865,33 @@ public static boolean insertexist(String t, Object key)  throws DBAppException {
     return false;
 
 }
+///////////Milestone 2 ////
+
+	public Iterator selectFromTable(SQLTerm[] arrSQLTerms, String[] strarrOperators)  throws DBAppException{
+		Vector<ArrayList<Object>>  result = new Vector<ArrayList<Object>>();
+		for(int i =0 ; i< arrSQLTerms.length;i++){
+			Hashtable<String , Object> elements = new Hashtable();
+			String tableName = arrSQLTerms[i]._strTableName;
+			elements.put(arrSQLTerms[i]._strColumnName,"");
+			int typeCol= getType(tableName,arrSQLTerms[i]._strColumnName);
+			Object value = arrSQLTerms[i]._objValue;
+
+			if (((value instanceof Integer) && typeCol != 0) || ((value instanceof Double) && typeCol != 1) || ((value instanceof String) && typeCol != 2) || ((value instanceof Date) && typeCol != 3)) {
+				throw new DBAppException();
+			}
+
+			if(checkColumns(tableName,elements) == false||tableExists(tableName)==false){
+				throw new DBAppException();
+			}
+		}
+
+		Iterator finalResult=result.iterator();
+		return null;
+
+
+
+	}
+
 
 
 
